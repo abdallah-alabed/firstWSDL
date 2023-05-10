@@ -1,0 +1,70 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:tns="https://www.tempuri.org/"
+                  xmlns:newTNS="https://www.ABDALLAH.org/"
+                  targetNamespace="https://www.tempuri.org/"
+                  name="RegistrationService">
+
+    <wsdl:types>
+<!--        <xsd:schema targetNamespace="https://www.ABDALLAH.org/">-->
+<!--            <xsd:include schemaLocation="externalSchema.xsd" />-->
+<!--        </xsd:schema>-->
+<!--        USING Import-->
+        <xsd:schema targetNamespace="http://www.w3.org/2001/XMLSchema">
+            <xsd:import schemaLocation="externalSchema.xsd" namespace="https://www.ABDALLAH.org/"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="UserRequestSOAP">
+<!--        <wsdl:part name="parameters" element="newTNS:UserRequest"/>-->
+        <wsdl:part name="parameters" element="tns:UserRequest"/>
+    </wsdl:message>
+    <wsdl:message name="UserResponseSOAP">
+<!--        <wsdl:part name="parameters" element="newTNS:UserResponse"/>-->
+        <wsdl:part name="parameters" element="tns:UserResponse"/>
+    </wsdl:message>
+
+    <wsdl:portType name="RegistrationService">
+        <wsdl:operation name="UserRequest">
+            <wsdl:input message="tns:UserRequestSOAP"/>
+            <wsdl:output message="tns:UserResponseSOAP"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="Registration" type="tns:RegistrationService">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="UserRequest">
+            <soap:operation soapAction="https://www.tempuri.org/" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:binding name="Registration12" type="tns:RegistrationService">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="UserRequest">
+            <soap12:operation soapAction="https://www.tempuri.org/Registration" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="RegistrationService">
+        <wsdl:port name="Registration" binding="tns:Registration">
+            <soap:address location="http://www.dneonline.com/calculator.asmx"/>
+        </wsdl:port>
+        <wsdl:port name="Registration12" binding="tns:Registration12">
+            <soap:address location="http://www.dneonline.com/calculator.asmx"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
