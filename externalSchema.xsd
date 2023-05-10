@@ -1,0 +1,20 @@
+<xsd:schema elementFormDefault="qualified" targetNamespace="https://www.ABDALLAH.org/"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="UserRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="name"  type="xsd:string"/>
+                <xsd:element name="age"  type="xsd:string"/>
+                <xsd:element name="address"  type="xsd:string"/>
+                <xsd:element name="phoneNumber"  type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="UserResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" maxOccurs="1" minOccurs="1" type="xsd:boolean"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
